@@ -1,4 +1,4 @@
-@extends('admin.admin_master')
+@extends('frontend.main')
 @section('main')
 <!-- banner-area -->
 <section class="banner">
