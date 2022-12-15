@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -23,18 +24,29 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/logout', 'destroy')->name('admin.logout');
-    Route::get('/admin/profile', 'profile')->name('admin.profile');
-    Route::get('/edit/profile', 'editProfile')->name('edit.profile');
-    Route::post('/store/profile', 'storeProfile')->name('store.profile');
-
-    Route::get('/change/password', 'changePassword')->name('change.password');
-    Route::post('/update/password', 'updatePassword')->name('update.password');
+//Route::controller(AdminController::class)->group(function () {
+//    Route::get('/admin/logout', 'destroy')->name('admin.logout');
+//    Route::get('/admin/profile', 'profile')->name('admin.profile');
+//    Route::get('/edit/profile', 'editProfile')->name('edit.profile');
+//    Route::post('/store/profile', 'storeProfile')->name('store.profile');
+//
+//    Route::get('/change/password', 'changePassword')->name('change.password');
+//    Route::post('/update/password', 'updatePassword')->name('update.password');
+//});
+//
+//Route::controller(HomeSliderController::class)->group(function () {
+//    Route::get('/home/slider', 'homeSlider')->name('home.slider');
+//});
+Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')->name('login');
+        Route::post('/login', 'login')->name('login');
+    });
+    Route::group(['middleware' => ['auth:admin']], function () {
+        Route::get('/dashboard', function () {
+            return view('admin.index');
+        });
+    });
 });
 
-Route::controller(HomeSliderController::class)->group(function () {
-    Route::get('/home/slider', 'homeSlider')->name('home.slider');
-});
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
