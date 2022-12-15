@@ -2,6 +2,15 @@
 @section('main')
 <!-- banner-area -->
 <section class="banner">
+    @if (Route::has('admin.login'))
+        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            @auth
+                <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">Home</a>
+            @else
+                <a href="{{ route('admin.login') }}" class="text-sm text-gray-700 underline">Login</a>
+            @endauth
+        </div>
+    @endif
     <div class="container custom-container">
         <div class="row align-items-center justify-content-center justify-content-lg-between">
             <div class="col-lg-6 order-0 order-lg-2">

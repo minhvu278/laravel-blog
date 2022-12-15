@@ -34,7 +34,7 @@
                                 <i class="ri-mail-send-line"></i>
                                 <span>Home Slide Setup</span>
                             </a>
-                                <li><a href="{{ route('home.slider') }}">Home Slide</a></li>
+{{--                                <li><a href="{{ route('home.slider') }}">Home Slide</a></li>--}}
                         </li>
                     </ul>
                 </li>
