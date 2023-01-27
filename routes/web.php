@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\HomeSlideController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,12 @@ Route::controller(AdminController::class)->group(function () {
 Route::controller(HomeSlideController::class)->group(function () {
     Route::get('/home/slide', 'homeSlide')->name('home.slide');
     Route::post('/update/slide', 'updateSlide')->name('update.slide');
+});
+
+Route::controller(AboutController::class)->group(function () {
+    Route::get('/about', 'aboutPage')->name('home.about');
+    Route::get('/about/page', 'index')->name('about.page');
+    Route::post('/update/about', 'update')->name('update.about');
 });
 
 require __DIR__.'/auth.php';
