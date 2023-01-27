@@ -29,13 +29,17 @@
                         <span>Home Slide Setup</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="ri-mail-send-line"></i>
-                                <span>Home Slide Setup</span>
-                            </a>
-                                <li><a href="{{ route('home.slide') }}">Home Slide</a></li>
-                        </li>
+                        <li><a href="{{ route('home.slide') }}">Home Slide</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>About Page</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('about.page') }}">About</a></li>
                     </ul>
                 </li>
 
