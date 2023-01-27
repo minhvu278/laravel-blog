@@ -44,7 +44,9 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
                                         <img id="showImage" class="rounded avatar-lg"
-                                             src="{{ (!empty($editData->profile_image)) ? url('upload/admin_images/'.$editData->profile_image) : url('upload/no_images.jpg') }}"
+                                             src="{{ (!empty($editData->profile_image)) ?
+                                                        url('upload/admin_images/'.$editData->profile_image) :
+                                                        url('upload/no_images.jpg') }}"
                                              alt="Card image cap">
                                     </div>
                                 </div>
@@ -60,7 +62,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#image').change(function (e) {
-                var reader = new FileReader();
+                let reader = new FileReader();
                 reader.onload = function (e) {
                     $('#showImage').attr('src', e.target.result);
                 }

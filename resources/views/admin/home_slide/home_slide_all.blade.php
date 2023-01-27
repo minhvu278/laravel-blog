@@ -8,12 +8,13 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Home Slide Setup</h4>
-                            <form method="POST" action="{{route('store.profile')}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('update.slide')}}" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $homeSlide->id }}">
                                 <div class="row mb-3">
                                     <label for="" class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" name="title" value="{{$homeSlider->name}}"
+                                        <input class="form-control" type="text" name="title" value="{{$homeSlide->title}}"
                                                id="title">
                                     </div>
                                 </div>
@@ -22,32 +23,28 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label">Short Title</label>
                                     <div class="col-sm-10">
                                         <input class="form-control" type="text" name="short_title"
-                                               value="{{$homeSlider->short_title}}" id="short_title">
+                                               value="{{$homeSlide->short_title}}" id="short_title">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Home Slide</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Video URL</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="text" name="home_slide"
-                                               value="{{$homeSlider->home_slide}}" id="home_slide">
+                                        <input class="form-control" type="text" name="video_url"
+                                               value="{{$homeSlide->video_url}}" id="video_url">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Video Url</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Slide Image</label>
                                     <div class="col-sm-10">
-                                        <input class="form-control" type="file" name="video_url" id="video_url">
+                                        <input class="form-control" type="file" name="home_slide" id="home_slide">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                                     <div class="col-sm-10">
-                                        <img id="showImage" class="rounded avatar-lg"
-                                             src="{{ (!empty($homeSlider->profile_image)) ?
-                                                    url('upload/home_slide/'.$homeSlider->profile_image) :
-                                                    url('upload/no_images.jpg') }}"
-                                             alt="Card image cap">
+                                        <img id="showImage" class="rounded avatar-lg" src="{{ (!empty($homeSlide->home_slide))? url( $homeSlide->home_slide):url('upload/no_image.jpg') }}" alt="Card image cap">
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-info waves-effect waves-light"
@@ -61,8 +58,8 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#image').change(function (e) {
-                var reader = new FileReader();
+            $('#home_slide').change(function (e) {
+                let reader = new FileReader();
                 reader.onload = function (e) {
                     $('#showImage').attr('src', e.target.result);
                 }
