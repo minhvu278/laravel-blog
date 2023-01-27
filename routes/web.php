@@ -40,6 +40,7 @@ Route::controller(HomeSlideController::class)->group(function () {
 });
 
 Route::controller(AboutController::class)->group(function () {
+    Route::get('/about', 'aboutPage')->name('home.about');
     Route::get('/about/page', 'index')->name('about.page');
     Route::post('/update/about', 'update')->name('update.about');
 });
